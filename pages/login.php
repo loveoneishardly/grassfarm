@@ -21,11 +21,11 @@
                     <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>ĐĂNG NHẬP</h3>
                     <div class="form-group">
                         <label class="control-label">TÀI KHOẢN</label>
-                        <input class="form-control" type="text" placeholder="Tên đăng nhập" autofocus>
+                        <input class="form-control" type="text" name="username" id="username" placeholder="Tên đăng nhập" autofocus>
                     </div>
                     <div class="form-group">
                         <label class="control-label">MẬT KHẨU</label>
-                        <input class="form-control" type="password" placeholder="Mật khẩu">
+                        <input class="form-control" type="password" name="password" id="password" placeholder="Mật khẩu">
                     </div>
                     <div class="form-group">
                         <div class="utility">
@@ -38,15 +38,33 @@
             </div>
         </section>
         <script async src="./lib/js/jquery-3.2.1.min.js"></script>
-        <script async src="./lib/js/popper.min.js"></script>
-        <script async src="./lib/js/bootstrap.min.js"></script>
-        <script async src="./lib/js/main.js"></script>
-        <script async src="./lib/js/plugins/pace.min.js"></script>
+        <script async src="./lib/js/lib.js"></script>
         <script type="text/javascript">
             $(function(){
                 $('#fdangnhap').on('submit', function(donard){
                     donard.preventDefault();
-                    window.location.href = "go?page=_main";
+                    var a = $(this).find('input[name="username"]').val().trim();
+                    var b = $(this).find('input[name="password"]').val().trim();
+                    $.ajax({
+						type: 'POST',
+						url: 'go',
+						data: {
+							for: "login",
+							taikhoan: a,
+							matkhau: MD5(b),
+							mobile: 0
+						},
+						beforeSend: function(){
+							//showDiv();
+						}
+					}).done(function(ret){
+                        var val = JSON.parse(ret);
+                        if (val.trangthai == "1"){
+                            window.location.href = "go?page=_main";
+                        } else {
+                            alert("Đăng nhập thất bại! Vui lòng kiểm tra lại!");
+                        }
+                    });
                 });
             });
         </script>

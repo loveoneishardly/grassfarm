@@ -1,6 +1,7 @@
 <?php
     session_start();
     include_once('controllers/AppController.php');
+    include_once('controllers/TaiKhoanController.php');
     include_once('controllers/QrCode.php');
 
     if(isset($_GET['check'])) {
@@ -31,6 +32,11 @@
 
     if(isset($_POST['for'])) {
         switch ($_POST['for']) {
+            case "login":
+                $md5pass = md5($_POST['matkhau']);
+                $trangthai = (new TaiKhoanController())->FLogin($_POST['taikhoan'], $md5pass);
+                echo json_encode($trangthai);
+            break;
             case "check_captcha":
                 if (isset($_POST['captcha'])){
                     if (strtolower($_SESSION['captcha']) != strtolower(trim($_POST['captcha']))){
@@ -74,13 +80,13 @@
 
     if(isset($_GET['page'])) {
         
-        // if(!isset($_SESSION["sansang"])){
-        //         header("Location: go?check=_home");
-        // } else {
-        //     if($_SESSION["sansang"] != "1"){
-        //         header("Location: go?check=_home");
-        //     }
-        // }
+        if(!isset($_SESSION["sansang"])){
+                header("Location: go?check=_home");
+        } else {
+            if($_SESSION["sansang"] != "1"){
+                header("Location: go?check=_home");
+            }
+        }
         
         ob_start();
 

@@ -3,10 +3,10 @@
     private static $instance;
     private $conn;
 
-    private $host = '10.97.13.160';
+    private $host = 'localhost';
     private $user = 'root';
-    private $pass = 'Vnpt@123';
-    private $name = 'qrcodefarm';
+    private $pass = '';
+    private $name = 'grassfarm';
 
     private function __construct()
     {

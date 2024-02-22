@@ -1,8 +1,8 @@
 <aside class="app-sidebar">
     <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="./lib/images/vnpt.png" style="max-width:50px;max-height:50px" alt="User Image">
         <div>
-            <p class="app-sidebar__user-name">TTCNT</p>
-            <p class="app-sidebar__user-designation">VNPT STG</p>
+            <p class="app-sidebar__user-name" style="font-weight:bold"><?php echo $_SESSION["tennv"]; ?></p>
+            <p class="app-sidebar__user-designation"><i><?php echo $_SESSION["tendonvi"]; ?></i></p>
         </div>
     </div>
     <ul class="app-menu">

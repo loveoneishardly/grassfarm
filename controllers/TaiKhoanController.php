@@ -32,6 +32,15 @@
             }
         }
 
+        public function FLogout_web(){
+            if(isset($_SESSION["manv"])){
+                unset($_SESSION["manv"]);
+                session_destroy();
+                return 1;
+            } else {
+                return 0;
+            }
+        }
 
 
 

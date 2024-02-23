@@ -1,6 +1,6 @@
 /*
-SQLyog Community v12.16 (32 bit)
-MySQL - 10.4.21-MariaDB : Database - grassfarm
+SQLyog Community
+MySQL - 10.1.37-MariaDB : Database - grassfarm
 *********************************************************************
 */
 
@@ -27,7 +27,7 @@ CREATE TABLE `dm_donvi` (
   `SODIENTHOAI` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `EMAIL` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `GHICHU` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `TRANGTHAI` int(11) DEFAULT 1,
+  `TRANGTHAI` int(11) DEFAULT '1',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -46,7 +46,7 @@ CREATE TABLE `dm_loaisanpham` (
   `CREATE` datetime DEFAULT NULL,
   `TIME_LOCK` datetime DEFAULT NULL,
   `GHI_CHU` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `TRANG_THAI` int(11) DEFAULT 1,
+  `TRANG_THAI` int(11) DEFAULT '1',
   PRIMARY KEY (`MA_LOAI_SP`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -65,25 +65,24 @@ CREATE TABLE `dm_nongho` (
   `GIOI_TINH` int(2) DEFAULT NULL,
   `SO_CCCD` int(11) DEFAULT NULL,
   `DIA_CHI` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `SO_DIEN_THOAI` varchar(205) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SO_DIEN_THOAI` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `EMP_PASSWORD` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `AVATAR` longblob DEFAULT NULL,
+  `AVATAR` longblob,
   `GHI_CHU` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ADMIN` int(2) DEFAULT 0,
-  `MENU` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ADMIN` int(2) DEFAULT '0',
+  `MENU` longtext COLLATE utf8mb4_unicode_ci,
   `CREATE` datetime DEFAULT NULL,
   `TIME_LOCK` datetime DEFAULT NULL,
-  `TRANGTHAI` int(11) DEFAULT 1,
+  `TRANGTHAI` int(11) DEFAULT '1',
   PRIMARY KEY (`MA_NONG_HO`,`SO_DIEN_THOAI`),
-  KEY `IDVUNGTRONG` (`TEN_NONG_HO`),
   KEY `MA_DON_VI` (`MA_DON_VI`),
-  CONSTRAINT `dm_nongho_ibfk_1` FOREIGN KEY (`MA_DON_VI`) REFERENCES `dm_donvi` (`ID`)
+  CONSTRAINT `dm_nongho_ibfk_2` FOREIGN KEY (`MA_DON_VI`) REFERENCES `dm_donvi` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `dm_nongho` */
 
 insert  into `dm_nongho`(`MA_NONG_HO`,`MA_DON_VI`,`TEN_NONG_HO`,`NGAY_SINH`,`TUOI`,`GIOI_TINH`,`SO_CCCD`,`DIA_CHI`,`SO_DIEN_THOAI`,`EMP_PASSWORD`,`AVATAR`,`GHI_CHU`,`ADMIN`,`MENU`,`CREATE`,`TIME_LOCK`,`TRANGTHAI`) values 
-(1,1,'Admin','2024-02-22',NULL,NULL,NULL,NULL,'admin','85d617c7e82c1ec51ee00bec5dca17e4',NULL,NULL,9,NULL,NULL,NULL,1);
+(1,1,'Admin','2024-02-22',NULL,NULL,NULL,NULL,'admin','85d617c7e82c1ec51ee00bec5dca17e4',NULL,NULL,9,NULL,'2024-02-23 14:50:52',NULL,1);
 
 /*Table structure for table `loainhatky` */
 
@@ -94,7 +93,7 @@ CREATE TABLE `loainhatky` (
   `TENLOAI` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `GHICHU` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `SAPXEP` int(11) DEFAULT NULL,
-  `TRANGTHAI` int(11) DEFAULT 1,
+  `TRANGTHAI` int(11) DEFAULT '1',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -121,8 +120,8 @@ CREATE TABLE `nhatkysanxuat` (
   `IDVUNGTRONG` int(11) DEFAULT NULL,
   `LOAINHATKY` int(11) DEFAULT NULL COMMENT '1: Bước 1, 2: Bước 2...',
   `TENNHATKY` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `BONPHAN` int(11) DEFAULT 0,
-  `THUOCBVTV` int(11) DEFAULT 0,
+  `BONPHAN` int(11) DEFAULT '0',
+  `THUOCBVTV` int(11) DEFAULT '0',
   `GHICHU` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `IDVUNGTRONG` (`IDVUNGTRONG`),
@@ -140,7 +139,7 @@ CREATE TABLE `thongtinvungtrong` (
   `MA_DON_VI` int(11) DEFAULT NULL,
   `MA_NONG_HO` int(11) DEFAULT NULL,
   `TEN_VUNG_TRONG` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `KEY_CODE` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `KEY_CODE` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `LOAI_SAN_PHAM` int(1) DEFAULT NULL,
   `TEN_KHU_VUC` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `TEN_KE_HOACH` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -153,7 +152,7 @@ CREATE TABLE `thongtinvungtrong` (
   `GHICHU` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `CREATE` datetime DEFAULT NULL,
   `TIME_LOCK` datetime DEFAULT NULL,
-  `TRANG_THAI` int(11) DEFAULT 1,
+  `TRANG_THAI` int(11) DEFAULT '1',
   PRIMARY KEY (`ID_VUNG_TRONG`,`KEY_CODE`),
   KEY `IDVUNGTRONG` (`MA_NONG_HO`),
   KEY `MA_DON_VI` (`MA_DON_VI`),
@@ -192,54 +191,6 @@ BEGIN
     END */$$
 DELIMITER ;
 
-/* Procedure structure for procedure `p_check_codeapi` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `p_check_codeapi` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_check_codeapi`(
-	p_idvungtrong VARCHAR(150)
-)
-BEGIN
-	declare v_check int(3);
-	
-	SELECT count(*) into v_check
-	FROM dmvungtrong WHERE ID = p_idvungtrong and (MAVUNGTRONG = ' ' or MAVUNGTRONG = '' OR ifnull(MAVUNGTRONG,'-1') = '-1');
-	
-	
-	if v_check > 0 then
-		select 0 as result from dual;
-	else
-		SELECT 1 AS result FROM DUAL;
-	end if;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `p_check_phonenumber` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `p_check_phonenumber` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_check_phonenumber`(
-    p_sodienthoai VARCHAR(150)
-    )
-BEGIN
-	DECLARE v_check INT(2);
-	SELECT COUNT(*) INTO v_check FROM dmvungtrong WHERE SODIENTHOAI = p_sodienthoai;
-	
-	IF v_check > 0 THEN
-		SELECT '1' AS TRANGTHAI, SODIENTHOAI
-		FROM dmvungtrong WHERE SODIENTHOAI = p_sodienthoai
-		limit 1;
-	ELSE
-		SELECT '0' AS TRANGTHAI, '' AS SODIENTHOAI
-		FROM DUAL;
-	END IF;
-    END */$$
-DELIMITER ;
-
 /* Procedure structure for procedure `p_dangnhap` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `p_dangnhap` */;
@@ -263,149 +214,19 @@ BEGIN
 END */$$
 DELIMITER ;
 
-/* Procedure structure for procedure `p_get_info_phonenumber` */
+/* Procedure structure for procedure `p_load_list_nongho` */
 
-/*!50003 DROP PROCEDURE IF EXISTS  `p_get_info_phonenumber` */;
+/*!50003 DROP PROCEDURE IF EXISTS  `p_load_list_nongho` */;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_get_info_phonenumber`(
-	p_sodienthoai VARCHAR(150)
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_load_list_nongho`(
+	p_madonvi varchar(100)
 )
 BEGIN
-	SELECT MAVUNGTRONG, LOAISANPHAM, MAVUNGTRONG, KV_TEN, KV_KEHOACH, HOPTACXA, TENNONGHO
-	FROM dmvungtrong WHERE SODIENTHOAI = p_sodienthoai;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `p_get_madinhdanh` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `p_get_madinhdanh` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_get_madinhdanh`(
-	p_idvungtrong varchar(150)
-)
-BEGIN
-	select MAVUNGTRONG, LOAISANPHAM, MAVUNGTRONG, KV_TEN, KV_KEHOACH, HOPTACXA
-	from dmvungtrong where ID = p_idvungtrong;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `p_get_phonenumber` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `p_get_phonenumber` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_get_phonenumber`(
-	p_madinhdanh VARCHAR(200)
-)
-BEGIN
-	SELECT MAVUNGTRONG, LOAISANPHAM, MAVUNGTRONG, KV_TEN, KV_KEHOACH, HOPTACXA, TENNONGHO, SODIENTHOAI
-	FROM dmvungtrong WHERE MAVUNGTRONG = p_madinhdanh;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `p_load_dsnhatky` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `p_load_dsnhatky` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_load_dsnhatky`(
-	p_idvungtrong VARCHAR(150)
-    )
-BEGIN
-	select ID, TENNHATKY
-	from nhatkysanxuat
-	where IDVUNGTRONG = p_idvungtrong;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `p_load_listvungtrong` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `p_load_listvungtrong` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_load_listvungtrong`(
-	p_iddonvi varchar(150)
-)
-BEGIN
-	select * 
-	from dmvungtrong
-	where IDDONVI = p_iddonvi;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `p_load_thongtinnhatky` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `p_load_thongtinnhatky` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_load_thongtinnhatky`(
-	p_idvungtrong VARCHAR(150),
-	p_idnhatky VARCHAR(150)
-)
-BEGIN
-	SET SESSION group_concat_max_len = 1000000;
-	
-	SELECT f_solannhatky(p_idvungtrong,1) as SOLANBONPHAN, f_solannhatky(p_idvungtrong,2) AS SOLANSUDUNGTHUOC, nhatky.IDNHATKY, nhatky.IDVUNGTRONG, nhatky.SUDUNGNHATKY, case when nhatky.BONPHAN = 1 then nhatky.NHATKYPHANBON when nhatky.THUOCBVTV = 1 then nhatky.NHATKYSUDUNGTHUOC else replace(group_concat('<p class="c-title3">',nhatky.TENNHATKY,' ',nhatky.CACHSUDUNGNHATKY,'</p>'),'>,<','><') end as TENNHATKY, nhatky.NGAYTHUCHIENNHATKY
-	FROM (
-		SELECT cc.ID AS IDNHATKY, cc.IDVUNGTRONG, cc.BONPHAN, cc.THUOCBVTV, CONCAT('- ',dd.TENLOAI,': ',cc.TENNHATKY) AS SUDUNGNHATKY, ii.TENNHATKY, IFNULL(ii.CACHSUDUNG,'') AS CACHSUDUNGNHATKY, DATE_FORMAT(ii.NGAYTHUCHIEN,'%d/%m/%Y') AS NGAYTHUCHIENNHATKY, dd.SAPXEP AS SAPXEPLOAINHATKY, ii.SAPXEP AS SAPXEPNHATKY, sdphan.NHATKYPHANBON, sdthuoc.NHATKYSUDUNGTHUOC
-		FROM nhatkysanxuat cc
-			LEFT JOIN sudungnhatky ii ON ii.IDNHATKY = cc.ID AND ii.IDVUNGTRONG = p_idvungtrong
-			left join (SELECT nhatky.IDNHATKY, nhatky.IDVUNGTRONG, replace(GROUP_CONCAT('<p class="c-title3">','+ Lần: ',nhatky.STT,'</p>','<p class="c-title4">','<i class="fa fa-arrow-right"></i> Ngày thực hiện: ',nhatky.NGAYTHUCHIEN,'</p>','<p class="c-title4">','<i class="fa fa-arrow-right"></i> ',nhatky.SUDUNGPHANBON,'</p>',nhatky.CACHSUDUNGPHANBON ORDER BY nhatky.STT),'>,<','><') AS NHATKYPHANBON
-					FROM (
-						SELECT (@row_n3:=@row_n3 + 1) AS STT, phanbon.IDNHATKY, phanbon.IDVUNGTRONG, phanbon.IDKYTHUATBONPHAN, phanbon.SUDUNGPHANBON, phanbon.CACHSUDUNGPHANBON, phanbon.NGAYTHUCHIEN
-						FROM (
-							SELECT aa.IDNHATKY, aa.IDVUNGTRONG, aa.IDKYTHUATBONPHAN, bb.SUDUNGPHANBON, replace(GROUP_CONCAT('<p class="c-title6">',aa.TENPHANBON,' ',IFNULL(aa.SOLUONG,''),'</p>' ORDER BY aa.SAPXEP),'>,<','><') AS CACHSUDUNGPHANBON, date_format(aa.NGAYTHUCHIEN,'%d/%m/%Y') as NGAYTHUCHIEN
-							FROM sudungphanbon aa, kythuatbonphan bb
-							WHERE aa.IDVUNGTRONG = p_idvungtrong AND aa.IDNHATKY = p_idnhatky
-							AND bb.ID = aa.IDKYTHUATBONPHAN AND bb.IDVUNGTRONG = p_idvungtrong
-							GROUP BY bb.SUDUNGPHANBON, aa.IDKYTHUATBONPHAN,aa.NGAYTHUCHIEN
-						) phanbon,(SELECT @row_n3:=0) AS temp3
-					) nhatky
-					GROUP BY nhatky.IDNHATKY, nhatky.IDVUNGTRONG
-				) sdphan on sdphan.IDVUNGTRONG = cc.IDVUNGTRONG and sdphan.IDVUNGTRONG = p_idvungtrong
-			left join (SELECT nhatky.IDNHATKY, nhatky.IDVUNGTRONG, replace(GROUP_CONCAT('<p class="c-title3">',nhatky.TENTHUOC,'</p>',nhatky.CACHSUDUNGTHUOCBVTV),'>,<','><') AS NHATKYSUDUNGTHUOC
-					FROM (
-						SELECT thuocbvtv.IDNHATKY, thuocbvtv.IDVUNGTRONG, CASE WHEN SUM(thuocbvtv.SOLAN) = 0 THEN CONCAT(thuocbvtv.TENTHUOC, ' Không') ELSE CONCAT(thuocbvtv.TENTHUOC, ' ', SUM(thuocbvtv.SOLAN), ' lần') END AS TENTHUOC, CASE WHEN SUM(thuocbvtv.SOLAN) = 0 THEN '' ELSE replace(GROUP_CONCAT('<p class="c-title4">','<i class="fa fa-arrow-right"></i> Lần: ',thuocbvtv.STT,'</p>','<p class="c-title6">','• Ngày thực hiện: ',thuocbvtv.NGAYTHUCHIEN,'</p>','<p class="c-title6">','• Số lượng nước phun: ',thuocbvtv.CACHSUDUNGTHUOC,'</p>' ORDER BY thuocbvtv.STT),'>,<','><') end AS CACHSUDUNGTHUOCBVTV
-						FROM (
-							SELECT (@row_n3:=CASE WHEN @tenthuoc=aa.TENTHUOC THEN @row_n3+1 ELSE 1 END) AS STT, aa.ID, aa.IDNHATKY, aa.IDVUNGTRONG, @tenthuoc:=aa.TENTHUOC AS TENTHUOC, CASE WHEN IFNULL(aa.CACHSUDUNG,'') = '' THEN 0 ELSE COUNT(aa.TENTHUOC) END AS SOLAN,IFNULL(aa.CACHSUDUNG,'') AS CACHSUDUNGTHUOC, date_format(aa.NGAYTHUCHIEN,'%d/%m/%Y') as NGAYTHUCHIEN
-							FROM sudungthuoc aa, (SELECT @row_n3:=0,@tenthuoc:='') AS temp3
-							WHERE aa.IDVUNGTRONG = p_idvungtrong AND aa.IDNHATKY = p_idnhatky
-							GROUP BY aa.TENTHUOC, aa.ID, aa.IDNHATKY, aa.IDVUNGTRONG, aa.NGAYTHUCHIEN
-						) thuocbvtv
-						GROUP BY thuocbvtv.IDNHATKY, thuocbvtv.IDVUNGTRONG, thuocbvtv.TENTHUOC
-						order by thuocbvtv.ID, thuocbvtv.STT
-					) nhatky
-					GROUP BY nhatky.IDNHATKY, nhatky.IDVUNGTRONG
-				) sdthuoc on sdthuoc.IDVUNGTRONG = cc.IDVUNGTRONG and sdthuoc.IDVUNGTRONG = p_idvungtrong
-		, loainhatky dd
-		WHERE cc.IDVUNGTRONG = p_idvungtrong AND dd.ID = cc.LOAINHATKY AND cc.LOAINHATKY = p_idnhatky
-		ORDER BY dd.SAPXEP, ii.SAPXEP
-	) nhatky
-	GROUP BY nhatky.IDNHATKY, nhatky.IDVUNGTRONG, nhatky.SUDUNGNHATKY, nhatky.NGAYTHUCHIENNHATKY;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `p_load_thongtinvungtrong` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `p_load_thongtinvungtrong` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_load_thongtinvungtrong`(
-	p_idvungtrong varchar(150)
-)
-BEGIN
-	SELECT aa.MAVUNGTRONG, aa.TENNONGHO, aa.DIACHI, aa.HOPTACXA, aa.SANPHAMTRONG, date_format(bb.NGAYSANXUAT,'%d/%m/%Y') as NGAYSANXUAT, bb.DAT_DIENTICH, bb.DAT_LOAIDAT, bb.DAT_DOPH, bb.KV_TEN, bb.KV_KEHOACH, DATE_FORMAT(bb.THUHOACH_NGAY,'%d/%m/%Y') as THUHOACH_NGAY, bb.THUHOACH_SANLUONG
-	FROM dmvungtrong aa, thongtinvungtrong bb
-	WHERE aa.ID = p_idvungtrong AND aa.ID = bb.IDVUNGTRONG AND bb.IDVUNGTRONG = p_idvungtrong;
+	SELECT t.MA_NONG_HO, t.MA_DON_VI, t.TEN_NONG_HO, t.ADMIN, t.TRANGTHAI, t.SO_DIEN_THOAI, t.MENU, t.TUOI, t.DIA_CHI, t.GIOI_TINH, DATE_FORMAT(t.NGAY_SINH,'%d/%m/%Y') AS NGAY_SINH, t.SO_CCCD, dv.TENDONVI, t.AVATAR, DATE_FORMAT(t.CREATE,'%d/%m/%Y %H:%i:%s') AS TIME_CREATE, DATE_FORMAT(t.TIME_LOCK,'%d/%m/%Y %H:%i:%s') AS TIME_LOCK
+	FROM dm_nongho t, dm_donvi dv
+	WHERE t.MA_DON_VI = p_madonvi AND t.MA_DON_VI = dv.ID;
     END */$$
 DELIMITER ;
 

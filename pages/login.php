@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="./lib/css/main.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Đăng nhập</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
     <body>
         <section class="material-half-bg">
@@ -37,7 +38,6 @@
                 </div>
             </div>
         </section>
-        <script async src="./lib/js/jquery-3.2.1.min.js"></script>
         <script async src="./lib/js/lib.js"></script>
         <script type="text/javascript">
             $(function(){
@@ -60,7 +60,7 @@
 					}).done(function(ret){
                         var val = JSON.parse(ret);
                         if (val.trangthai == "1"){
-                            window.location.href = "go?page=_main";
+                            window.location.href = "go?page=_main&subP=controlboard";
                         } else {
                             alert("Đăng nhập thất bại! Vui lòng kiểm tra lại!");
                         }

@@ -2,6 +2,7 @@
     session_start();
     include_once('controllers/AppController.php');
     include_once('controllers/TaiKhoanController.php');
+    include_once('controllers/DanhMucController.php');
     include_once('controllers/QrCode.php');
 
     if(isset($_GET['check'])) {
@@ -37,6 +38,9 @@
                 $trangthai = (new TaiKhoanController())->FLogin($_POST['taikhoan'], $md5pass);
                 echo json_encode($trangthai);
             break;
+            case "logout":
+                echo (new TaikhoanController())->FLogout_web();
+            break;
             case "check_captcha":
                 if (isset($_POST['captcha'])){
                     if (strtolower($_SESSION['captcha']) != strtolower(trim($_POST['captcha']))){
@@ -58,6 +62,11 @@
 
     if(isset($_GET['for'])) {
         switch ($_GET['for']) {
+            case "load_list_nongho":
+                $madonvi = $_GET['madonvi'];
+                $res = (new DanhMucController())->FDanhSachNongHo($madonvi);
+                echo json_encode($res);
+            break;
             case "check_captcha":
                 if (isset($_POST['captcha'])){
                     if (strtolower($_SESSION['captcha']) != strtolower(trim($_POST['captcha']))){

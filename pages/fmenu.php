@@ -40,7 +40,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="go?page=_main&subP=listuser"><i class="icon fa fa-angle-right "></i> Danh sách nông hộ</a></li>
-                <li><a class="treeview-item" href="go?page=_main&subP=land"><i class="icon fa fa-angle-right "></i> Danh mục loại sản phẩm</a></li>
+                <li><a class="treeview-item" href="go?page=_main&subP=typetree"><i class="icon fa fa-angle-right "></i> Danh mục loại sản phẩm</a></li>
                 <li><a class="treeview-item" href="go?page=_main&subP=land"><i class="icon fa fa-angle-right "></i> Danh mục 1</a></li>
                 <li><a class="treeview-item" href="go?page=_main&subP=land"><i class="icon fa fa-angle-right "></i> Danh mục 2</a></li>
             </ul>

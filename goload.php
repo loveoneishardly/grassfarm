@@ -67,6 +67,11 @@
                 $res = (new DanhMucController())->FDanhSachNongHo($madonvi);
                 echo json_encode($res);
             break;
+            case "load_list_loaisp":
+                $madonvi = $_GET['madonvi'];
+                $res = (new DanhMucController())->FDanhSachLoaiSanPham($madonvi);
+                echo json_encode($res);
+            break;
             case "check_captcha":
                 if (isset($_POST['captcha'])){
                     if (strtolower($_SESSION['captcha']) != strtolower(trim($_POST['captcha']))){

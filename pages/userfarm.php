@@ -10,7 +10,7 @@
     </ul>
 </div>
 <div class="row">
-    <div class="col-md-3">
+    <!-- <div class="col-md-3">
         <div class="tile">
             <h3 class="tile-title line-head">Thông tin nông hộ</h3>
             <div class="tile-body">
@@ -94,12 +94,16 @@
                     </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-9">
+    </div> -->
+    <div class="col-md-12">
         <div class="tile">
             <div class="tile-title-w-btn">
                 <h3 class="title">Danh sách nông hộ</h3>
-                <p><button id="nongho_xemdanhsach" name="nongho_xemdanhsach" class="btn btn-primary icon-btn" href="">XEM DANH SÁCH</button></p>
+                <p>
+                    <button id="nongho_xemdanhsach" name="nongho_xemdanhsach" class="btn btn-primary icon-btn"><i class="fa fa-fw fa-lg fa-play "></i>XEM DANH SÁCH</button>
+                    <button id="nongho_them" name="nongho_them" class="btn btn-primary icon-btn"><i class="fa fa-fw fa-lg fa-plus-circle"></i>THÊM</button>
+                    <button id="nongho_sua" name="nongho_sua" class="btn btn-primary icon-btn"><i class="fa fa-fw fa-lg fa-check-circle"></i>SỬA</button>
+                </p>
             </div>
             <div id="list_nongho"></div>
         </div>
@@ -108,7 +112,7 @@
 <script type="text/javascript">
     var source_listnongho;
     $(document).ready(function () {
-        source_listvungtrong = {
+        source_listnongho = {
             datatype: "json",
             datafields: [
                 { name: 'MA_NONG_HO'},
@@ -133,7 +137,7 @@
             pager: function (pagenum, pagesize, oldpagenum) {
             }
         };
-        var dataAdapter = new $.jqx.dataAdapter(source_listvungtrong);
+        var dataAdapter = new $.jqx.dataAdapter(source_listnongho);
         $("#list_nongho").jqxGrid({
             source: dataAdapter,
             width: '100%',
@@ -183,8 +187,8 @@
             // $("#sodienthoai").val(selectedRowData_dsvungtrong.SODIENTHOAI);
         });
         $("#nongho_xemdanhsach").click(function(){
-            var url_dsvungtrong = "go?for=load_list_nongho&madonvi=1";
-            source_listvungtrong.url = url_dsvungtrong;
+            var url_dsnongho = "go?for=load_list_nongho&madonvi=1";
+            source_listnongho.url = url_dsnongho;
             $("#list_nongho").jqxGrid('updatebounddata');
         });
     });

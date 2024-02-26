@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home</title>
+    <title>Home Manage</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="./lib/images/vnpt_icon.ico" type="image/x-icon">
@@ -69,6 +69,10 @@
           $s = 'dashboard';
         } else if ($s == 'listuser') {
           $s = 'userfarm';
+        } else if ($s == 'typetree') {
+          $s = 'grasstype';
+        } else if ($s == 'infofarm') {
+          $s = 'detailfarm';
         }
       } else {
         $s = '';

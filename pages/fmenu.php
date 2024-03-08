@@ -17,10 +17,11 @@
                 <i class="app-menu__icon fa fa-clipboard"></i><span class="app-menu__label">Nhật ký sản xuất</span><i class="treeview-indicator fa fa-angle-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="go?page=_main&subP=land"><i class="icon fa fa-angle-right "></i> Cải tạo đất</a></li>
-                <li><a class="treeview-item" href="go?page=_main&subP=land"><i class="icon fa fa-angle-right "></i> Sử dụng nước</a></li>
-                <li><a class="treeview-item" href="go?page=_main&subP=land"><i class="icon fa fa-angle-right "></i> Phân bón</a></li>
-                <li><a class="treeview-item" href="go?page=_main&subP=land"><i class="icon fa fa-angle-right "></i> Thuốc trừ sâu</a></li>
+                <li><a class="treeview-item" href="go?page=_main&subP=kythuatcanhtac"><i class="icon fa fa-angle-right "></i> Kỹ thuật canh tác</a></li>
+                <li><a class="treeview-item" href="go?page=_main&subP=phanbon"><i class="icon fa fa-angle-right "></i> Phân bón và kỹ thuật bón phân</a></li>
+                <li><a class="treeview-item" href="go?page=_main&subP=thuocbvtv"><i class="icon fa fa-angle-right "></i> Sử dụng thuốc BVTV</a></li>
+                <li><a class="treeview-item" href="go?page=_main&subP=chamsoccay"><i class="icon fa fa-angle-right "></i> Chăm sóc cây</a></li>
+                <li><a class="treeview-item" href="go?page=_main&subP=xulyrahoa"><i class="icon fa fa-angle-right "></i> Xử lý ra hoa</a></li>
             </ul>
         </li>
         <li class="treeview">
@@ -61,10 +62,33 @@
         const url = window.location.search;
         var path_url = url.split("=");
         var urlRegExp = new RegExp(path_url[2].replace(/\/$/,''));
+        // console.log(urlRegExp);
         $('.app-menu li a').each(function(){
+            // console.log(this.href);
             if(urlRegExp.test(this.href)){
                 $(this).addClass('active');
             }
         });
+        // $('.treeview-item').click(function() {
+        //     var ulClass = $(this).closest('.treeview').prev('li').find('ul').attr('class');
+        //     console.log(ulClass);
+        // });
+        // $('.app-menu li ul li a').each(function(){
+        //     console.log(this.href);
+            
+        //     if(urlRegExp.test(this.href)){
+        //         $(this).closest('.treeview').prev('li.treeview').addClass('is-expanded');
+                
+        //     }
+        // });
+        // $('.treeview-item').click(function() {
+        //     $(this).closest('.treeview').toggleClass('is-expanded');
+        // });
+        // $('.app-menu li ul li a').each(function(){
+        //     console.log(this.href);
+        //     if(urlRegExp.test(this.href)){
+        //         $(this).addClass('active');
+        //     }
+        // });
     });
 </script>

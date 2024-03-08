@@ -186,6 +186,7 @@
 
 .jqx-background-reset {
     background: transparent !important;
+    z-index: 5;
 }
 
 /*Disable browser selection*/

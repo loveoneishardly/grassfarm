@@ -59,8 +59,8 @@
         </div>
         </div>
     </div>
-    </div>
-    <div class="row">
+</div>
+<div class="row">
     <div class="col-md-6">
         <div class="tile">
         <h3 class="tile-title">3</h3>

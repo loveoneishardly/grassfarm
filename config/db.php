@@ -3,9 +3,9 @@
     private static $instance;
     private $conn;
 
-    private $host = 'localhost';
+    private $host = '10.97.13.160';
     private $user = 'root';
-    private $pass = '';
+    private $pass = 'Vnpt@123';
     private $name = 'grassfarm';
 
     private function __construct()
